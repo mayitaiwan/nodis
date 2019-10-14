@@ -1,0 +1,49 @@
+<mapper namespace="mytest">
+    //asdfa
+    <query id="selectUserById">
+      update t_user
+      <set>
+          <if test="#{name}!=null">name='444'</if>
+          ,name='12'
+          <if test="#{name}!=null">,name='24442'</if>
+          <where>
+              <choose>
+                  <when test="#{a  } != null">
+                      AND title like #{title}
+                  </when>
+                  <when test="#{a  } != null">
+                      AND author_name like #{author.name}
+                  </when>
+                  <otherwise>
+                  AND name=#{name}
+              </otherwise>
+              </choose>
+          </where>
+     </set>
+    </query>
+    <query id="selectUserById1">
+        select ${id},${name} from  t_user  where id in
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </query>
+    <query id="insertdata">
+        insert into t_user(name,birthday)
+        values(#{name},#{birthday})
+    </query>
+    <query id="updateuser">
+        <![CDATA[
+        update t_user set name=#{name} where id<#{id}
+        ]]>
+    </query>
+    <query id="deleteuser">
+        delete from  t_user  where id=#{id}
+    </query>
+    <query id="callprocedure">
+        call deleteuser(#{id})
+    </query>
+    <query id="queryuserandclass">
+        select u.name uname,c.name cname from t_user u,t_class c where u.class_id=c.id
+    </query>
+</mapper>

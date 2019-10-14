@@ -1,0 +1,51 @@
+<mapper namespace="mytest1231">
+    //asdfa
+    <query id="selectUserById">
+      update t_user
+      <set>
+          <if test="#{name  }!=null">,name=#{name}</if>
+          <if test="#{xx}!=null">name=#{xx}</if>
+          <where>
+              <choose>
+                  <when test="#{name  } != null">
+                      AND title like #{title}
+                  </when>
+                  <when test="#{id  } != null">
+                      AND author_name like #{author.name}
+                  </when>
+                  <otherwise>
+                  AND featured = 1
+              </otherwise>
+              </choose>
+          </where>
+     </set>
+    </query>
+    <query id="selectUserById1213">
+        update t_user
+        <set>
+            <if test="#{name  }!=null">,name=#{name}</if>
+            <if test="#{xx}!=null">name=#{xx}</if>
+            <where>
+                <choose>
+                    <when test="#{name  } != null">
+                        AND title like #{title}
+                    </when>
+                    <when test="#{id  } != null">
+                        AND author_name like #{author.name}
+                    </when>
+                    <otherwise>
+                        AND featured = 1
+                    </otherwise>
+                </choose>
+            </where>
+        </set>
+    </query>
+    <query id="selectUserById1">
+        select ${fieldname} from  t_user
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </query>
+
+</mapper>

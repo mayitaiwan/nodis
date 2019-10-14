@@ -1,0 +1,5 @@
+{
+  "configpath": "databaseconf",
+  "namespace": true,
+  "printsql": true
+}
